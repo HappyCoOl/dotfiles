@@ -2,7 +2,11 @@
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+" Use Node.js for JavaScript interpretation
+ let $JS_CMD='node'
+
 set background=dark
+set backspace=2
 colorscheme solarized
 
 let mapleader = ","
@@ -50,14 +54,11 @@ set autoindent
 
 "let javaScript_fold=1 "folding in JavaScript
 
-if has("autocmd")
-  filetype plugin indent on
-endif
 
 au FocusLost * :wa                  "save all files on window focus lost
 
 function! Fix_markdown_for_tut()
-    %s/\(<h\d\) id='.*'>/\1>/
+    %s/\(<h\d\) id=".*">/\1>/
     "%s/<pre><code>/[js]/
     "%s/<\/code>\(<\/pre>\)/[\/js]/
     %s/<pre><code>/<pre class="" name="code">
@@ -87,3 +88,30 @@ function! Fix_google_docs_html()
 endfunction
 
 command! Fgd call Fix_google_docs_html()
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                      FileType Stuff                             "
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+if has("autocmd")
+  filetype plugin indent on
+
+  autocmd FileTYpe *.md set filetype=markdown
+endif
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" MULTIPURPOSE TAB KEY
+" Indent if we're at the beginning of a line. Else, do completion.
+" via https://github.com/garybernhardt/dotfiles/blob/master/.vimrc
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! InsertTabWrapper()
+  let col = col('.') - 1
+  if !col || getline('.')[col - 1] !~ '\k'
+    return "\<tab>"
+  else
+    return "\<c-p>"
+  endif
+endfunction
+inoremap <tab> <c-r>=InsertTabWrapper()<cr>
+inoremap <s-tab> <c-n>
