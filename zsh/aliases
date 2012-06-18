@@ -4,6 +4,8 @@ alias gc='git commit'
 alias gl='git log'
 alias ga='git add'
 
+alias switch='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+
 function take {
 	mkdir -p $1
 	cd $1
@@ -43,7 +45,7 @@ function audio () {
   #ffmpeg -i $x -f mp3 -ab 192000 -vn "$name.mp3"
   vaudio $x $name
   rm $x
-  afplay "$name.mp3"
+  #afplay "$name.mp3"
 }
 
 function vaudio () {
@@ -56,3 +58,13 @@ function vaudio () {
   ffmpeg -i $1 -f mp3 -ab 192000 -vn "$2.mp3"
 }
 
+function bible () {
+  if [ $1 ]
+  then
+    date=$*
+  else
+    date=`date +"%B %e"`; 
+  fi; 
+
+  pcregrep -M "$date\n[\w\s-]*\n\n" ~/Documents/Dropbox/notes/refx-2010-05-29-12-45-refx\ Bible\ Listening\ Schedule.txt
+}
