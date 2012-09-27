@@ -22,6 +22,11 @@ function server() {
 
 alias lock='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 
+function min () {
+  local file=`echo $1 | sed 's/.js$//'`
+  java -jar ~/bin/compiler.jar --js $1 --create_source_map "./$file-min.js.map" --source_map_format=V3 --js_output_file "$file.min.js"
+}
+
 
 # Parameters: as many paths to files playable by `afplay` as you like
 function tunes () {
@@ -67,4 +72,11 @@ function bible () {
   fi; 
 
   pcregrep -M "$date\n[\w\s-]*\n\n" ~/Documents/Dropbox/notes/refx-2010-05-29-12-45-refx\ Bible\ Listening\ Schedule.txt
+}
+
+function js () {
+  curl -O http://code.jquery.com/jquery-latest.js
+  curl -O http://backbonejs.org/backbone-min.js
+  curl -O http://underscorejs.org/underscore-min.js
+  touch app.js
 }

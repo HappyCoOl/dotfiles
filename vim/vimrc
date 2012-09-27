@@ -58,7 +58,7 @@ set autoindent
 au FocusLost * :wa                  "save all files on window focus lost
 
 function! Fix_markdown_for_tut()
-    %s/\(<h\d\) id=".*">/\1>/
+    %s/\(<h\d\) id=["'].*['"]>/\1>/
     "%s/<pre><code>/[js]/
     "%s/<\/code>\(<\/pre>\)/[\/js]/
     %s/<pre><code>/<pre class="" name="code">
