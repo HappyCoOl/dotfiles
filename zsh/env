@@ -41,3 +41,5 @@ txtrst='\e[0m'    # Text Reset
 z --add "$(pwd -P)"
 
 eval "$(rbenv init -)"
+
+export PYTHONPATH='/Library/Python/2.7/site-packages/'

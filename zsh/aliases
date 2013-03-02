@@ -5,6 +5,9 @@ alias gl='git log'
 alias ga='git add'
 
 alias switch='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+alias a='cd /Volumes/Atlantis/Stuff/a'
+
+alias shoot='phantomjs ~/bin/screen.js'
 
 function take {
 	mkdir -p $1
@@ -80,3 +83,6 @@ function js () {
   curl -O http://underscorejs.org/underscore-min.js
   touch app.js
 }
+
+
+alias mutt='cd ~/Desktop && mutt'
