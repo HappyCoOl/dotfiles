@@ -13,9 +13,3 @@
 [submodule "vim/bundle/snipmate"]
 	path = vim/bundle/snipmate
 	url = git://github.com/msanders/snipmate.vim.git
-[submodule "syntastic"]
-	path = syntastic
-	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim-powerline"]
-	path = vim-powerline
-	url = git://github.com/Lokaltog/vim-powerline.git
