@@ -18,6 +18,7 @@ set background=dark
 "set spell
 " multiple windows --------------------------------------------------------
 set hidden                               "allow to bg unsaved buffers, etc.
+set laststatus=2                                   "always show status line
 " multiple tab pages ------------------------------------------------------
 " terminal ----------------------------------------------------------------
 " using the mouse ---------------------------------------------------------
@@ -116,9 +117,14 @@ augroup HTML
     autocmd FileType html nnoremap <buffer> <leader>c I<!--<esc>A--><esc>
 augroup END
 
+augroup Ruby
+    autocmd!
+    autocmd FileType ruby setlocal shiftwidth=2 softtabstop=2 tabstop=2
+augroup END
+
 augroup JavaScript
     autocmd!
-    autocmd FileType javascript nnoremap <buffer> <leader>r :!node %<cr>
+    autocmd FileType javascript nnoremap <buffer> <leader>m :!node %<cr>
     autocmd FileType javascript nnoremap <buffer> <leader>c gI//<esc>
     autocmd FileType javascript vnoremap <buffer> <leader>c :normal gI//<esc>
 augroup END
